@@ -76,12 +76,30 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 1.6rem 1.4rem;
-      transition: width 0.45s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+      transition: box-shadow 0.3s;
     }
     .card:hover {
-      width: 240px;
-      box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
     }
+
+    /* Arrows on homepage */
+    .arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.5rem;
+      color: #444;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.2s;
+      z-index: 100;
+      user-select: none;
+      padding: 0.5rem;
+    }
+    .arrow:hover { color: #aaa; }
+    .arrow-left  { left: 0.8rem; }
+    .arrow-right { right: 0.8rem; }
 
     canvas {
       position: absolute;
@@ -104,16 +122,9 @@
     .card-divider {
       width: 2rem; height: 1px;
       background: rgba(255,255,255,0.55);
-      margin: 0.55rem 0 0.6rem;
-      transition: width 0.3s;
+      margin: 0.55rem 0 0;
     }
-    .card:hover .card-divider { width: 3rem; }
-    .card-sub {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      color: rgba(255,255,255,0.65);
-      letter-spacing: 0.06em;
-    }
+    .card-sub { display: none; }
 
     footer {
       position: fixed;
@@ -147,7 +158,7 @@
         <rect x="0.5" y="0.5" width="15" height="11" rx="1.5" stroke="#888"/>
         <path d="M0.5 2L8 7L15.5 2" stroke="#888"/>
       </svg>
-      <a href="mailto:you@email.com">you@email.com</a>
+      <a href="/cdn-cgi/l/email-protection#93eafce6d3f6fef2faffbdf0fcfe"><span class="__cf_email__" data-cfemail="c4bdabb184a1a9a5ada8eaa7aba9">[email&#160;protected]</span></a>
     </div>
   </header>
 
@@ -190,12 +201,12 @@
 
   <footer>Your Name · Institution · © 2025</footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const CARDS = [
-      { f:'#ff6b6b', t:'#c0392b', o1:'#ff9a9a', o2:'#ffcccc' },
-      { f:'#00d2d3', t:'#0097a7', o1:'#80ffff', o2:'#b0f8ff' },
-      { f:'#ff9f43', t:'#e67e22', o1:'#ffc470', o2:'#ffe0a0' },
-      { f:'#54a0ff', t:'#2980b9', o1:'#90c0ff', o2:'#c0daff' },
+      { f:'#1a6b8a', t:'#0d4a66', o1:'#60b0d8', o2:'#a0d8f0' },
+      { f:'#0d9488', t:'#0f766e', o1:'#60e0d8', o2:'#a0f0e8' },
+      { f:'#d97706', t:'#b45309', o1:'#fbbf24', o2:'#fde68a' },
+      { f:'#e05c3a', t:'#b83c20', o1:'#f09070', o2:'#f8c0a8' },
     ];
     function sr(seed,i){let x=Math.sin(seed*9301+i*49297+1234)*10000;return x-Math.floor(x);}
     function drawArt(cardId,cvId,seed){
@@ -228,13 +239,4 @@
         }
         for(let k=0;k<120;k++){
           ctx.globalAlpha=0.04+r(k*23)*.07;ctx.fillStyle='#ffffff';
-          ctx.beginPath();ctx.arc(r(k*2)*W,r(k*2+1)*H,0.5+r(k*3)*2,0,Math.PI*2);ctx.fill();
-        }
-        ctx.globalAlpha=1;
-      }
-      draw();window.addEventListener('resize',draw);
-    }
-    drawArt('c0','cv0',0);drawArt('c1','cv1',1);drawArt('c2','cv2',2);drawArt('c3','cv3',3);
-  </script>
-</body>
-</html>
+          ctx.beginPath();ctx.arc(r(k*2)*W,r(k*2+1)*H,0.5+r(k*3)*2,0,Math.PI*2);ctx.fi
