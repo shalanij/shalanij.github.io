@@ -4,21 +4,18 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Name</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&family=DM+Mono:wght@300&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500&family=DM+Mono:wght@300&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg: #2b2b2b; --muted: #999; }
-
     html, body {
       height: 100%;
-      background: var(--bg);
+      background: #2b2b2b;
       color: #e0e0e0;
       font-family: 'Raleway', sans-serif;
       font-weight: 300;
       overflow: hidden;
     }
 
-    /* Header */
     header {
       padding: 2.2rem 3rem 1.5rem;
       display: flex;
@@ -38,25 +35,24 @@
     .header-left p {
       font-family: 'DM Mono', monospace;
       font-size: 0.78rem;
-      color: var(--muted);
+      color: #999;
       letter-spacing: 0.05em;
     }
     .header-right { display: flex; align-items: center; gap: 0.5rem; padding-top: 0.6rem; }
     .header-right a {
       font-family: 'DM Mono', monospace;
-      font-size: 0.75rem; color: var(--muted);
-      text-decoration: none; letter-spacing: 0.04em;
+      font-size: 0.75rem;
+      color: #999;
+      text-decoration: none;
       transition: color 0.2s;
     }
     .header-right a:hover { color: #fff; }
 
-    /* Cards */
     .cards {
       display: flex;
       padding: 0 3rem 3rem;
       height: calc(100vh - 135px);
       min-height: 480px;
-      gap: 0;
       opacity: 0;
       animation: fadeIn 0.9s ease 0.25s forwards;
     }
@@ -77,30 +73,17 @@
       box-shadow: 0 10px 50px rgba(0,0,0,0.5);
     }
 
-    /* Canvas abstract art background */
     canvas {
       position: absolute;
       inset: 0;
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       display: block;
     }
 
-    /* Big faded watermark letter — exactly like Chadha */
-    .card-letter {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -58%);
-      font-family: 'Raleway', sans-serif;
-      font-weight: 200;
-      font-size: 13rem;
-      color: rgba(255,255,255,0.15);
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-      z-index: 2;
-    }
+    .card-letter { display: none; }
 
-    /* Card body — ALWAYS VISIBLE, bottom left, exactly like Chadha */
+    /* Label ALWAYS visible at bottom — exactly like Chadha */
     .card-body {
       position: absolute;
       bottom: 2rem;
@@ -109,24 +92,21 @@
     }
     .card-title {
       font-family: 'Raleway', sans-serif;
-      font-weight: 300;
-      font-size: 1.55rem;
-      color: #fff;
+      font-weight: 400;
+      font-size: 2.2rem;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(255,255,255,0.4);
       letter-spacing: 0.02em;
     }
     .card-divider {
-      width: 2.5rem; height: 1px;
+      width: 2.5rem;
+      height: 1px;
       background: rgba(255,255,255,0.55);
-      margin: 0.6rem 0 0.65rem;
+      margin: 0.6rem 0 0;
       transition: width 0.3s;
     }
     .card:hover .card-divider { width: 3.8rem; }
-    .card-sub {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      color: rgba(255,255,255,0.65);
-      letter-spacing: 0.06em;
-    }
+    .card-sub { display: none; }
 
     @media (max-width: 600px) {
       html, body { overflow: auto; }
@@ -155,9 +135,8 @@
   </header>
 
   <div class="cards">
-
-    <a class="card" href="about.html" id="c1">
-      <canvas id="cv1"></canvas>
+    <a class="card" href="about.html" id="card0">
+      <canvas id="cv0"></canvas>
       <div class="card-letter">A</div>
       <div class="card-body">
         <div class="card-title">About</div>
@@ -165,9 +144,8 @@
         <div class="card-sub">who I am</div>
       </div>
     </a>
-
-    <a class="card" href="teaching.html" id="c2">
-      <canvas id="cv2"></canvas>
+    <a class="card" href="teaching.html" id="card1">
+      <canvas id="cv1"></canvas>
       <div class="card-letter">T</div>
       <div class="card-body">
         <div class="card-title">Teaching</div>
@@ -175,9 +153,8 @@
         <div class="card-sub">courses, philosophy</div>
       </div>
     </a>
-
-    <a class="card" href="resume.html" id="c3">
-      <canvas id="cv3"></canvas>
+    <a class="card" href="resume.html" id="card2">
+      <canvas id="cv2"></canvas>
       <div class="card-letter">R</div>
       <div class="card-body">
         <div class="card-title">Resume</div>
@@ -185,9 +162,8 @@
         <div class="card-sub">personal profile</div>
       </div>
     </a>
-
-    <a class="card" href="research.html" id="c4">
-      <canvas id="cv4"></canvas>
+    <a class="card" href="research.html" id="card3">
+      <canvas id="cv3"></canvas>
       <div class="card-letter">R</div>
       <div class="card-body">
         <div class="card-title">Research</div>
@@ -195,72 +171,68 @@
         <div class="card-sub">publications, works</div>
       </div>
     </a>
-
   </div>
 
   <script>
-    // Palette 1 — Electric Coral & Cyan (bright, vivid)
-    const cards = [
-      { id:'c1', cv:'cv1', f:'#ff6b6b', t:'#c0392b', o1:'#ff9a9a', o2:'#ffdddd' },
-      { id:'c2', cv:'cv2', f:'#00d2d3', t:'#0097a7', o1:'#80ffff', o2:'#ccfeff' },
-      { id:'c3', cv:'cv3', f:'#ff9f43', t:'#e67e22', o1:'#ffc470', o2:'#ffe8b0' },
-      { id:'c4', cv:'cv4', f:'#54a0ff', t:'#2980b9', o1:'#90c8ff', o2:'#c8e8ff' },
+    // Palette 1 — exactly from the palette preview: Electric Coral & Cyan
+    const CARDS = [
+      { f:'#ff6b6b', t:'#c0392b', o1:'#ff9a9a', o2:'#ffcccc' }, // Coral  - About
+      { f:'#00d2d3', t:'#0097a7', o1:'#80ffff', o2:'#b0f8ff' }, // Cyan   - Teaching
+      { f:'#ff9f43', t:'#e67e22', o1:'#ffc470', o2:'#ffe0a0' }, // Amber  - Resume
+      { f:'#54a0ff', t:'#2980b9', o1:'#90c0ff', o2:'#c0daff' }, // Blue   - Research
     ];
 
-    function seededR(seed, i) {
+    function sr(seed, i) {
       let x = Math.sin(seed * 9301 + i * 49297 + 1234) * 10000;
       return x - Math.floor(x);
     }
 
-    function drawCard(cfg, seed) {
-      const card   = document.getElementById(cfg.id);
-      const canvas = document.getElementById(cfg.cv);
+    function drawArt(cardId, cvId, seed) {
+      const card   = document.getElementById(cardId);
+      const canvas = document.getElementById(cvId);
       const ctx    = canvas.getContext('2d');
+      const c      = CARDS[seed];
 
       function draw() {
         canvas.width  = card.offsetWidth  || 220;
         canvas.height = card.offsetHeight || 600;
         const W = canvas.width, H = canvas.height;
-        const r = (i) => seededR(seed, i);
+        const r = (i) => sr(seed, i);
 
-        // Base solid gradient
-        const bg = ctx.createLinearGradient(0, 0, W * 0.4, H);
-        bg.addColorStop(0, cfg.f);
-        bg.addColorStop(1, cfg.t);
+        // Base gradient
+        const bg = ctx.createLinearGradient(0, 0, W * 0.5, H);
+        bg.addColorStop(0, c.f);
+        bg.addColorStop(1, c.t);
         ctx.fillStyle = bg;
         ctx.fillRect(0, 0, W, H);
 
-        // Glowing orbs — bright translucent blobs
+        // Glowing orbs
         for (let k = 0; k < 4; k++) {
-          const gx = r(k*5)   * W;
-          const gy = r(k*5+1) * H;
-          const gr = Math.max(W, H) * (0.3 + r(k*5+2) * 0.55);
-          const g  = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr);
-          g.addColorStop(0,   cfg.o1 + 'aa');
-          g.addColorStop(0.5, cfg.o2 + '55');
+          const gx = r(k*5)*W, gy = r(k*5+1)*H;
+          const gr = Math.max(W,H) * (0.3 + r(k*5+2)*0.55);
+          const g  = ctx.createRadialGradient(gx,gy,0,gx,gy,gr);
+          g.addColorStop(0,   c.o1 + 'aa');
+          g.addColorStop(0.5, c.o2 + '55');
           g.addColorStop(1,   'transparent');
-          ctx.globalAlpha = 0.45 + r(k*7) * 0.3;
+          ctx.globalAlpha = 0.45 + r(k*7)*0.3;
           ctx.fillStyle = g;
           ctx.beginPath();
-          ctx.ellipse(
-            gx, gy,
-            gr * (0.4 + r(k*8)   * 0.45),
-            gr * (0.3 + r(k*8+1) * 0.4),
-            r(k*9) * Math.PI, 0, Math.PI * 2
-          );
+          ctx.ellipse(gx, gy,
+            gr*(0.4+r(k*8)*0.45), gr*(0.3+r(k*8+1)*0.4),
+            r(k*9)*Math.PI, 0, Math.PI*2);
           ctx.fill();
         }
         ctx.globalAlpha = 1;
 
-        // Flowing white brushstroke lines
+        // Flowing brushstroke lines
         for (let k = 0; k < 8; k++) {
           ctx.save();
-          ctx.globalAlpha = 0.08 + r(k*11) * 0.14;
+          ctx.globalAlpha = 0.08 + r(k*11)*0.14;
           ctx.strokeStyle = '#ffffff';
-          ctx.lineWidth   = 0.6 + r(k*13) * 2.5;
+          ctx.lineWidth   = 0.6 + r(k*13)*2.5;
           ctx.lineCap = 'round';
           ctx.beginPath();
-          ctx.moveTo(r(k*4)*W,   r(k*4+1)*H);
+          ctx.moveTo(r(k*4)*W, r(k*4+1)*H);
           ctx.bezierCurveTo(
             r(k*4+2)*W, r(k*4+3)*H,
             r(k*4+4)*W, r(k*4+5)*H,
@@ -273,47 +245,46 @@
         // Geometric fragments
         for (let k = 0; k < 8; k++) {
           ctx.save();
-          ctx.globalAlpha = 0.06 + r(k*17) * 0.12;
-          ctx.fillStyle = k % 2 === 0 ? '#ffffff' : cfg.o1;
+          ctx.globalAlpha = 0.06 + r(k*17)*0.12;
+          ctx.fillStyle = k%2===0 ? '#ffffff' : c.o1;
           ctx.translate(r(k*6)*W, r(k*6+1)*H);
-          ctx.rotate(r(k*6+2) * Math.PI * 2);
-          const sz = W * (0.05 + r(k*6+3) * 0.12);
-          const sh = Math.floor(r(k*6+4) * 3);
+          ctx.rotate(r(k*6+2)*Math.PI*2);
+          const sz = W*(0.05+r(k*6+3)*0.12);
+          const sh = Math.floor(r(k*6+4)*3);
           ctx.beginPath();
-          if (sh === 0) {
-            ctx.moveTo(0, -sz); ctx.lineTo(sz*.87, sz*.5); ctx.lineTo(-sz*.87, sz*.5); ctx.closePath();
-          } else if (sh === 1) {
-            ctx.rect(-sz*.5, -sz*.22, sz, sz*.44);
-          } else {
-            ctx.arc(0, 0, sz*.55, 0, Math.PI*2);
-          }
+          if(sh===0){ ctx.moveTo(0,-sz);ctx.lineTo(sz*.87,sz*.5);ctx.lineTo(-sz*.87,sz*.5);ctx.closePath(); }
+          else if(sh===1){ ctx.rect(-sz*.5,-sz*.22,sz,sz*.44); }
+          else { ctx.arc(0,0,sz*.55,0,Math.PI*2); }
           ctx.fill();
           ctx.restore();
         }
 
         // Fine scatter dots
         for (let k = 0; k < 120; k++) {
-          ctx.globalAlpha = 0.04 + r(k*23) * 0.07;
+          ctx.globalAlpha = 0.04 + r(k*23)*0.07;
           ctx.fillStyle = '#ffffff';
           ctx.beginPath();
-          ctx.arc(r(k*2)*W, r(k*2+1)*H, 0.5 + r(k*3)*2, 0, Math.PI*2);
+          ctx.arc(r(k*2)*W, r(k*2+1)*H, 0.5+r(k*3)*2, 0, Math.PI*2);
           ctx.fill();
         }
         ctx.globalAlpha = 1;
 
-        // Subtle highlight veil top
-        const veil = ctx.createLinearGradient(W, 0, 0, H*0.6);
-        veil.addColorStop(0, 'rgba(255,255,255,0.07)');
-        veil.addColorStop(1, 'transparent');
+        // Light veil
+        const veil = ctx.createLinearGradient(W,0,0,H*0.6);
+        veil.addColorStop(0,'rgba(255,255,255,0.07)');
+        veil.addColorStop(1,'transparent');
         ctx.fillStyle = veil;
-        ctx.fillRect(0, 0, W, H);
+        ctx.fillRect(0,0,W,H);
       }
 
       draw();
       window.addEventListener('resize', draw);
     }
 
-    cards.forEach((cfg, i) => drawCard(cfg, i));
+    drawArt('card0','cv0',0);
+    drawArt('card1','cv1',1);
+    drawArt('card2','cv2',2);
+    drawArt('card3','cv3',3);
   </script>
 
 </body>
