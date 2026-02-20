@@ -214,3 +214,22 @@ footer {
   .header-left h1 { font-size: 2rem; }
   .two-col { grid-template-columns: 1fr; }
 }
+
+/* ── Slideshow arrows ── */
+.arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: #444;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+  z-index: 100;
+  user-select: none;
+  line-height: 1;
+  padding: 0.5rem;
+}
+.arrow:hover { color: #aaa; }
+.arrow-left  { left: 0.8rem; }
+.arrow-right { right: 0.8rem; }
