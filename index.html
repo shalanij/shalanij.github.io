@@ -7,7 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&family=DM+Mono:wght@300&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg: #1a1a1a; --muted: #888; }
+    :root { --bg: #2b2b2b; --muted: #999; }
+
     html, body {
       height: 100%;
       background: var(--bg);
@@ -17,136 +18,123 @@
       overflow: hidden;
     }
 
+    /* Header */
     header {
-      padding: 1.8rem 2.5rem 1rem;
+      padding: 2.2rem 3rem 1.5rem;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: flex-start;
       opacity: 0;
-      animation: fadeIn 1s ease 0.3s forwards;
+      animation: fadeIn 0.8s ease 0.1s forwards;
     }
     .header-left h1 {
       font-weight: 200;
-      font-size: 2.2rem;
+      font-size: 2.8rem;
       color: #fff;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       line-height: 1;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
     }
     .header-left p {
       font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
+      font-size: 0.78rem;
       color: var(--muted);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
     }
-    .header-right { display: flex; align-items: center; gap: 0.5rem; }
+    .header-right { display: flex; align-items: center; gap: 0.5rem; padding-top: 0.6rem; }
     .header-right a {
       font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.05em;
+      font-size: 0.75rem; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.04em;
       transition: color 0.2s;
     }
     .header-right a:hover { color: #fff; }
 
-    .polyptych {
+    /* Cards */
+    .cards {
       display: flex;
-      gap: 3px;
-      padding: 0.5rem 2.5rem 2rem;
-      height: calc(100vh - 110px);
-      min-height: 420px;
+      padding: 0 3rem 3rem;
+      height: calc(100vh - 135px);
+      min-height: 480px;
+      gap: 0;
       opacity: 0;
-      animation: fadeIn 1s ease 0.5s forwards;
+      animation: fadeIn 0.9s ease 0.25s forwards;
     }
     @keyframes fadeIn { to { opacity: 1; } }
 
-    .panel {
+    .card {
       flex: 1;
-      position: relative;
+      margin: 0 6px;
+      border-radius: 4px;
       overflow: hidden;
+      position: relative;
       cursor: pointer;
       text-decoration: none;
-      transition: flex 0.5s cubic-bezier(0.4,0,0.2,1);
-      border-radius: 2px;
+      transition: flex 0.45s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
     }
-    .panel:hover { flex: 1.6; }
-    .panel:hover .panel-overlay { opacity: 1; }
-    .panel:hover canvas { filter: brightness(0.5); }
+    .card:hover {
+      flex: 1.4;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+    }
 
+    /* Canvas abstract art background */
     canvas {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       display: block;
-      transition: filter 0.4s;
     }
 
-    .panel-overlay {
+    /* Big faded watermark letter — exactly like Chadha */
+    .card-letter {
       position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 1.8rem 1.4rem;
-      opacity: 0;
-      transition: opacity 0.4s;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -58%);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 200;
+      font-size: 13rem;
+      color: rgba(255,255,255,0.15);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
       z-index: 2;
     }
-    .panel-title {
-      font-weight: 300;
-      font-size: 1.4rem;
-      color: #fff;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.4rem;
+
+    /* Card body — ALWAYS VISIBLE, bottom left, exactly like Chadha */
+    .card-body {
+      position: absolute;
+      bottom: 2rem;
+      left: 1.8rem;
+      z-index: 3;
     }
-    .panel-divider {
-      width: 2rem; height: 1px;
-      background: rgba(255,255,255,0.5);
-      margin-bottom: 0.5rem;
+    .card-title {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      font-size: 1.55rem;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+    .card-divider {
+      width: 2.5rem; height: 1px;
+      background: rgba(255,255,255,0.55);
+      margin: 0.6rem 0 0.65rem;
       transition: width 0.3s;
     }
-    .panel:hover .panel-divider { width: 3rem; }
-    .panel-sub {
+    .card:hover .card-divider { width: 3.8rem; }
+    .card-sub {
       font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
+      font-size: 0.68rem;
       color: rgba(255,255,255,0.65);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .panel-label {
-      position: absolute;
-      bottom: 1rem;
-      left: 1.2rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      color: rgba(255,255,255,0.3);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      z-index: 2;
-      transition: opacity 0.3s;
-    }
-    .panel:hover .panel-label { opacity: 0; }
-
-    .panel::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 1px solid rgba(255,255,255,0.06);
-      pointer-events: none;
-      z-index: 3;
-      border-radius: 2px;
+      letter-spacing: 0.06em;
     }
 
     @media (max-width: 600px) {
       html, body { overflow: auto; }
-      .polyptych { flex-direction: column; height: auto; padding: 0.5rem 1rem 2rem; }
-      .panel { min-height: 160px; flex: none !important; }
-      header { padding: 1.2rem 1rem 0.8rem; flex-direction: column; gap: 0.5rem; }
-      .header-left h1 { font-size: 1.6rem; }
-      .panel:hover .panel-overlay { opacity: 1; }
+      header { padding: 1.5rem 1.2rem 1rem; flex-direction: column; gap: 0.4rem; }
+      .header-left h1 { font-size: 2rem; }
+      .cards { flex-direction: column; height: auto; padding: 0 1rem 2rem; }
+      .card { min-height: 160px; flex: none !important; margin: 4px 0; }
+      .card-letter { font-size: 7rem; }
     }
   </style>
 </head>
@@ -158,180 +146,165 @@
       <p>your title · your institution</p>
     </div>
     <div class="header-right">
-      <svg width="14" height="11" viewBox="0 0 14 11" fill="none"><rect x="0.5" y="0.5" width="13" height="10" rx="1" stroke="#666"/><path d="M0.5 2L7 6.5L13.5 2" stroke="#666"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+        <rect x="0.5" y="0.5" width="15" height="11" rx="1.5" stroke="#888"/>
+        <path d="M0.5 2L8 7L15.5 2" stroke="#888"/>
+      </svg>
       <a href="mailto:you@email.com">you@email.com</a>
     </div>
   </header>
 
-  <div class="polyptych">
+  <div class="cards">
 
-    <a class="panel" href="about.html" id="p1">
-      <canvas id="c1"></canvas>
-      <span class="panel-label">About</span>
-      <div class="panel-overlay">
-        <div class="panel-title">About</div>
-        <div class="panel-divider"></div>
-        <div class="panel-sub">who I am</div>
+    <a class="card" href="about.html" id="c1">
+      <canvas id="cv1"></canvas>
+      <div class="card-letter">A</div>
+      <div class="card-body">
+        <div class="card-title">About</div>
+        <div class="card-divider"></div>
+        <div class="card-sub">who I am</div>
       </div>
     </a>
 
-    <a class="panel" href="teaching.html" id="p2">
-      <canvas id="c2"></canvas>
-      <span class="panel-label">Teaching</span>
-      <div class="panel-overlay">
-        <div class="panel-title">Teaching</div>
-        <div class="panel-divider"></div>
-        <div class="panel-sub">courses · philosophy</div>
+    <a class="card" href="teaching.html" id="c2">
+      <canvas id="cv2"></canvas>
+      <div class="card-letter">T</div>
+      <div class="card-body">
+        <div class="card-title">Teaching</div>
+        <div class="card-divider"></div>
+        <div class="card-sub">courses, philosophy</div>
       </div>
     </a>
 
-    <a class="panel" href="resume.html" id="p3">
-      <canvas id="c3"></canvas>
-      <span class="panel-label">Resume</span>
-      <div class="panel-overlay">
-        <div class="panel-title">Resume</div>
-        <div class="panel-divider"></div>
-        <div class="panel-sub">personal profile</div>
+    <a class="card" href="resume.html" id="c3">
+      <canvas id="cv3"></canvas>
+      <div class="card-letter">R</div>
+      <div class="card-body">
+        <div class="card-title">Resume</div>
+        <div class="card-divider"></div>
+        <div class="card-sub">personal profile</div>
       </div>
     </a>
 
-    <a class="panel" href="research.html" id="p4">
-      <canvas id="c4"></canvas>
-      <span class="panel-label">Research</span>
-      <div class="panel-overlay">
-        <div class="panel-title">Research</div>
-        <div class="panel-divider"></div>
-        <div class="panel-sub">publications · works</div>
+    <a class="card" href="research.html" id="c4">
+      <canvas id="cv4"></canvas>
+      <div class="card-letter">R</div>
+      <div class="card-body">
+        <div class="card-title">Research</div>
+        <div class="card-divider"></div>
+        <div class="card-sub">publications, works</div>
       </div>
     </a>
 
   </div>
 
   <script>
-    function drawAbstract(canvasId, panelId, seed) {
-      const panel = document.getElementById(panelId);
-      const canvas = document.getElementById(canvasId);
-      const ctx = canvas.getContext('2d');
+    // Palette 1 — Electric Coral & Cyan (bright, vivid)
+    const cards = [
+      { id:'c1', cv:'cv1', f:'#ff6b6b', t:'#c0392b', o1:'#ff9a9a', o2:'#ffdddd' },
+      { id:'c2', cv:'cv2', f:'#00d2d3', t:'#0097a7', o1:'#80ffff', o2:'#ccfeff' },
+      { id:'c3', cv:'cv3', f:'#ff9f43', t:'#e67e22', o1:'#ffc470', o2:'#ffe8b0' },
+      { id:'c4', cv:'cv4', f:'#54a0ff', t:'#2980b9', o1:'#90c8ff', o2:'#c8e8ff' },
+    ];
 
-      // Seeded random
-      function r(i) {
-        let x = Math.sin(seed * 9301 + i * 49297) * 10000;
-        return x - Math.floor(x);
-      }
+    function seededR(seed, i) {
+      let x = Math.sin(seed * 9301 + i * 49297 + 1234) * 10000;
+      return x - Math.floor(x);
+    }
 
-      const palettes = [
-        // About — deep teal, aqua, gold
-        {
-          bg: ['#071e22', '#0d2d33', '#112a30'],
-          a: ['#1a7a7a', '#2aafaa', '#c9a84c', '#e8d080', '#4dd0c8', '#80e0d8']
-        },
-        // Teaching — indigo, violet, blush
-        {
-          bg: ['#10082a', '#180e38', '#1e1240'],
-          a: ['#4a35a0', '#7055d0', '#c06888', '#e8a0b8', '#9080d8', '#c8b8f8']
-        },
-        // Resume — amber, sienna, cream
-        {
-          bg: ['#1e1005', '#2a1808', '#30200a'],
-          a: ['#a06020', '#d08030', '#e8b860', '#f8e098', '#c89050', '#e8c878']
-        },
-        // Research — forest, lime, moss
-        {
-          bg: ['#081808', '#0e2210', '#102814'],
-          a: ['#2a7030', '#48a050', '#90c840', '#b8e870', '#508840', '#88c060']
-        }
-      ];
+    function drawCard(cfg, seed) {
+      const card   = document.getElementById(cfg.id);
+      const canvas = document.getElementById(cfg.cv);
+      const ctx    = canvas.getContext('2d');
 
       function draw() {
-        canvas.width  = panel.offsetWidth  || 200;
-        canvas.height = panel.offsetHeight || 400;
+        canvas.width  = card.offsetWidth  || 220;
+        canvas.height = card.offsetHeight || 600;
         const W = canvas.width, H = canvas.height;
-        const p = palettes[seed % palettes.length];
+        const r = (i) => seededR(seed, i);
 
-        // Background
-        const bgG = ctx.createLinearGradient(0, 0, W * r(1), H);
-        bgG.addColorStop(0, p.bg[0]);
-        bgG.addColorStop(0.55, p.bg[1]);
-        bgG.addColorStop(1, p.bg[2]);
-        ctx.fillStyle = bgG;
+        // Base solid gradient
+        const bg = ctx.createLinearGradient(0, 0, W * 0.4, H);
+        bg.addColorStop(0, cfg.f);
+        bg.addColorStop(1, cfg.t);
+        ctx.fillStyle = bg;
         ctx.fillRect(0, 0, W, H);
 
-        // Large glowing orbs
-        for (let i = 0; i < 4; i++) {
-          const gx = r(i*5)   * W;
-          const gy = r(i*5+1) * H;
-          const gr = Math.max(W,H) * (0.3 + r(i*5+2) * 0.6);
-          const grad = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr);
-          grad.addColorStop(0,   p.a[i % p.a.length] + '88');
-          grad.addColorStop(0.5, p.a[(i+1) % p.a.length] + '33');
-          grad.addColorStop(1,   'transparent');
-          ctx.globalAlpha = 0.4 + r(i*7) * 0.3;
-          ctx.fillStyle = grad;
+        // Glowing orbs — bright translucent blobs
+        for (let k = 0; k < 4; k++) {
+          const gx = r(k*5)   * W;
+          const gy = r(k*5+1) * H;
+          const gr = Math.max(W, H) * (0.3 + r(k*5+2) * 0.55);
+          const g  = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr);
+          g.addColorStop(0,   cfg.o1 + 'aa');
+          g.addColorStop(0.5, cfg.o2 + '55');
+          g.addColorStop(1,   'transparent');
+          ctx.globalAlpha = 0.45 + r(k*7) * 0.3;
+          ctx.fillStyle = g;
           ctx.beginPath();
-          ctx.ellipse(gx, gy,
-            gr * (0.4 + r(i*8)*0.5),
-            gr * (0.3 + r(i*8+1)*0.4),
-            r(i*9) * Math.PI, 0, Math.PI*2);
+          ctx.ellipse(
+            gx, gy,
+            gr * (0.4 + r(k*8)   * 0.45),
+            gr * (0.3 + r(k*8+1) * 0.4),
+            r(k*9) * Math.PI, 0, Math.PI * 2
+          );
           ctx.fill();
         }
         ctx.globalAlpha = 1;
 
-        // Flowing brushstroke lines
-        for (let i = 0; i < 10; i++) {
+        // Flowing white brushstroke lines
+        for (let k = 0; k < 8; k++) {
           ctx.save();
-          ctx.globalAlpha = 0.1 + r(i*13) * 0.22;
-          ctx.strokeStyle = p.a[(i+2) % p.a.length];
-          ctx.lineWidth   = 0.8 + r(i*17) * 3;
+          ctx.globalAlpha = 0.08 + r(k*11) * 0.14;
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth   = 0.6 + r(k*13) * 2.5;
           ctx.lineCap = 'round';
           ctx.beginPath();
-          ctx.moveTo(r(i*4)*W, r(i*4+1)*H);
+          ctx.moveTo(r(k*4)*W,   r(k*4+1)*H);
           ctx.bezierCurveTo(
-            r(i*4+2)*W, r(i*4+3)*H,
-            r(i*4+4)*W, r(i*4+5)*H,
-            r(i*4+6)*W, r(i*4+7)*H
+            r(k*4+2)*W, r(k*4+3)*H,
+            r(k*4+4)*W, r(k*4+5)*H,
+            r(k*4+6)*W, r(k*4+7)*H
           );
           ctx.stroke();
           ctx.restore();
         }
 
         // Geometric fragments
-        for (let i = 0; i < 10; i++) {
+        for (let k = 0; k < 8; k++) {
           ctx.save();
-          ctx.globalAlpha = 0.06 + r(i*19) * 0.14;
-          ctx.fillStyle = p.a[(i+1) % p.a.length];
-          ctx.translate(r(i*6)*W, r(i*6+1)*H);
-          ctx.rotate(r(i*6+2) * Math.PI * 2);
-          const sz = W * (0.04 + r(i*6+3) * 0.13);
-          const sh = Math.floor(r(i*6+4) * 4);
+          ctx.globalAlpha = 0.06 + r(k*17) * 0.12;
+          ctx.fillStyle = k % 2 === 0 ? '#ffffff' : cfg.o1;
+          ctx.translate(r(k*6)*W, r(k*6+1)*H);
+          ctx.rotate(r(k*6+2) * Math.PI * 2);
+          const sz = W * (0.05 + r(k*6+3) * 0.12);
+          const sh = Math.floor(r(k*6+4) * 3);
           ctx.beginPath();
           if (sh === 0) {
-            ctx.moveTo(0,-sz); ctx.lineTo(sz*.866,sz*.5); ctx.lineTo(-sz*.866,sz*.5); ctx.closePath();
+            ctx.moveTo(0, -sz); ctx.lineTo(sz*.87, sz*.5); ctx.lineTo(-sz*.87, sz*.5); ctx.closePath();
           } else if (sh === 1) {
-            ctx.rect(-sz*(0.5+r(i)*0.4), -sz*0.25, sz*(1+r(i+1)*0.5), sz*0.5);
-          } else if (sh === 2) {
-            ctx.arc(0, 0, sz*0.55, 0, Math.PI*2);
+            ctx.rect(-sz*.5, -sz*.22, sz, sz*.44);
           } else {
-            // Diamond
-            ctx.moveTo(0,-sz); ctx.lineTo(sz*0.6,0); ctx.lineTo(0,sz); ctx.lineTo(-sz*0.6,0); ctx.closePath();
+            ctx.arc(0, 0, sz*.55, 0, Math.PI*2);
           }
           ctx.fill();
           ctx.restore();
         }
 
         // Fine scatter dots
-        for (let i = 0; i < 150; i++) {
-          ctx.globalAlpha = 0.03 + r(i*23) * 0.07;
-          ctx.fillStyle = p.a[Math.floor(r(i*7)*p.a.length)];
+        for (let k = 0; k < 120; k++) {
+          ctx.globalAlpha = 0.04 + r(k*23) * 0.07;
+          ctx.fillStyle = '#ffffff';
           ctx.beginPath();
-          ctx.arc(r(i*2)*W, r(i*2+1)*H, 0.5 + r(i*3)*2.5, 0, Math.PI*2);
+          ctx.arc(r(k*2)*W, r(k*2+1)*H, 0.5 + r(k*3)*2, 0, Math.PI*2);
           ctx.fill();
         }
         ctx.globalAlpha = 1;
 
-        // Light veil top-right
-        const veil = ctx.createLinearGradient(W, 0, 0, H);
-        veil.addColorStop(0, 'rgba(255,255,255,0.05)');
-        veil.addColorStop(0.6, 'transparent');
+        // Subtle highlight veil top
+        const veil = ctx.createLinearGradient(W, 0, 0, H*0.6);
+        veil.addColorStop(0, 'rgba(255,255,255,0.07)');
+        veil.addColorStop(1, 'transparent');
         ctx.fillStyle = veil;
         ctx.fillRect(0, 0, W, H);
       }
@@ -340,10 +313,7 @@
       window.addEventListener('resize', draw);
     }
 
-    drawAbstract('c1','p1',0);
-    drawAbstract('c2','p2',1);
-    drawAbstract('c3','p3',2);
-    drawAbstract('c4','p4',3);
+    cards.forEach((cfg, i) => drawCard(cfg, i));
   </script>
 
 </body>
