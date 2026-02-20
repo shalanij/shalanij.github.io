@@ -4,41 +4,63 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Name · About</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500&family=DM+Mono:wght@300&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style-inner.css"/>
+  <style>
+    .side-card { background: linear-gradient(160deg, #ff6b6b 0%, #c0392b 100%); }
+    .badge { background: #ff6b6b; }
+    .item-list a, .citation-text a { color: #ff6b6b; }
+    .dl-link { color: #ff6b6b; border-bottom-color: #ff6b6b; }
+  </style>
 </head>
 <body>
-  <nav>
-    <a class="nav-home" href="index.html">Your Name</a>
-    <ul class="nav-links">
-      <li><a href="about.html" class="active">About</a></li>
-      <li><a href="teaching.html">Teaching</a></li>
-      <li><a href="resume.html">Resume</a></li>
-      <li><a href="research.html">Research</a></li>
-    </ul>
-  </nav>
-  <div class="page">
-    <p class="page-label">About</p>
-    <h2>Who I Am</h2>
-    <p>
-      Write a short introduction about yourself here. Who are you, where are you based,
-      and what drives your work? Two or three paragraphs is ideal.
-    </p>
-    <p>
-      You can mention your institutional affiliation, your background, and what
-      makes your perspective unique. Keep it warm and personal.
-    </p>
-    <p>
-      Optional third paragraph — perhaps about your journey, your home country,
-      or what brought you to your current research focus.
-    </p>
-    <div class="tags">
-      <span class="tag">Interest One</span>
-      <span class="tag">Interest Two</span>
-      <span class="tag">Interest Three</span>
-      <span class="tag">Interest Four</span>
+  <header>
+    <div class="header-left">
+      <h1>Your Name</h1>
+      <p>your title · your institution</p>
+    </div>
+    <div class="header-right">
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="0.5" y="0.5" width="15" height="11" rx="1.5" stroke="#888"/><path d="M0.5 2L8 7L15.5 2" stroke="#888"/></svg>
+      <a href="mailto:you@email.com">you@email.com</a>
+    </div>
+  </header>
+  <div class="layout">
+    <div class="side-card">
+      <div class="side-card-title">About</div>
+      <div class="side-card-divider"></div>
+      <div class="side-card-sub">who I am</div>
+    </div>
+    <div class="content">
+      <span class="badge">Introduction</span>
+      <p class="body-text">
+        Write a short introduction about yourself here. Who are you, where are you based,
+        and what drives your work? Two or three paragraphs is ideal.
+      </p>
+      <p class="body-text">
+        You can mention your institutional affiliation, your background, and what
+        makes your perspective unique. Keep it warm and personal.
+      </p>
+      <p class="body-text">
+        Optional third paragraph — perhaps about your journey, your home country,
+        or what brought you to your current research focus.
+      </p>
+      <hr class="section-divider"/>
+      <span class="badge">Interests</span>
+      <ul class="item-list">
+        <li><a href="#">Research Interest One</a></li>
+        <li><a href="#">Research Interest Two</a></li>
+        <li><a href="#">Research Interest Three</a></li>
+        <li><a href="#">Research Interest Four</a></li>
+        <li><a href="#">Research Interest Five</a></li>
+      </ul>
+      <hr class="section-divider"/>
+      <span class="badge">Contact</span>
+      <ul class="item-list">
+        <li><a href="mailto:you@email.com">you@email.com</a></li>
+        <li><a href="#">University / Department</a></li>
+        <li><a href="#">LinkedIn</a> &nbsp;·&nbsp; <a href="#">Google Scholar</a></li>
+      </ul>
     </div>
   </div>
-  <footer>Your Name · Institution · © 2025</footer>
 </body>
 </html>

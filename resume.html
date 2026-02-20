@@ -4,68 +4,38 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Name · Resume</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500&family=DM+Mono:wght@300&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style-inner.css"/>
+  <style>
+    .side-card { background: linear-gradient(160deg, #ff9f43 0%, #e67e22 100%); }
+    .badge { background: #ff9f43; }
+    .item-list a, .citation-text a { color: #ff9f43; }
+    .dl-link { color: #ff9f43; border-bottom-color: #ff9f43; }
+  </style>
 </head>
 <body>
-  <nav>
-    <a class="nav-home" href="index.html">Your Name</a>
-    <ul class="nav-links">
-      <li><a href="about.html">About</a></li>
-      <li><a href="teaching.html">Teaching</a></li>
-      <li><a href="resume.html" class="active">Resume</a></li>
-      <li><a href="research.html">Research</a></li>
-    </ul>
-  </nav>
-  <div class="page">
-    <p class="page-label">Resume</p>
-    <h2>Personal Profile</h2>
-    <ul class="timeline">
-      <li class="tl-item">
-        <span class="tl-year">20XX – present</span>
-        <div class="tl-body">
-          <strong>Position or Degree Title</strong>
-          <span>Institution Name, Department</span>
-        </div>
-      </li>
-      <li class="tl-item">
-        <span class="tl-year">20XX – 20XX</span>
-        <div class="tl-body">
-          <strong>Position or Degree Title</strong>
-          <span>Institution Name, Department</span>
-        </div>
-      </li>
-      <li class="tl-item">
-        <span class="tl-year">20XX – 20XX</span>
-        <div class="tl-body">
-          <strong>Position or Degree Title</strong>
-          <span>Institution Name, Department</span>
-        </div>
-      </li>
-      <li class="tl-item">
-        <span class="tl-year">20XX – 20XX</span>
-        <div class="tl-body">
-          <strong>Position or Degree Title</strong>
-          <span>Institution Name, Department</span>
-        </div>
-      </li>
-      <li class="tl-item">
-        <span class="tl-year">Skills</span>
-        <div class="tl-body">
-          <strong>Skill Area One · Skill Area Two · Skill Area Three</strong>
-          <span>Tool · Method · Software</span>
-        </div>
-      </li>
-      <li class="tl-item">
-        <span class="tl-year">Service</span>
-        <div class="tl-body">
-          <strong>Organization or Committee</strong>
-          <span>Role or description</span>
-        </div>
-      </li>
-    </ul>
-    <a class="dl-link" href="cv.pdf">Download Full CV (PDF) →</a>
+  <header>
+    <div class="header-left">
+      <h1>Your Name</h1>
+      <p>your title · your institution</p>
+    </div>
+    <div class="header-right">
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="0.5" y="0.5" width="15" height="11" rx="1.5" stroke="#888"/><path d="M0.5 2L8 7L15.5 2" stroke="#888"/></svg>
+      <a href="mailto:you@email.com">you@email.com</a>
+    </div>
+  </header>
+  <div class="layout">
+    <div class="side-card">
+      <div class="side-card-title">Resume</div>
+      <div class="side-card-divider"></div>
+      <div class="side-card-sub">personal profile</div>
+    </div>
+    <div class="content">
+      <p class="citation-text">
+        Download my full CV below
+      </p>
+      <a class="dl-link" href="cv.pdf" target="_blank">⬇ Download CV (PDF)</a>
+    </div>
   </div>
-  <footer>Your Name · Institution · © 2025</footer>
 </body>
 </html>
