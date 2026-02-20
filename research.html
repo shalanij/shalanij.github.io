@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name · Research</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #2b2b2b;
+      --text: #e8e8e8;
+      --muted: #999;
+      --line: #444;
+      --orange: #f7941d;
+      --card-color: #e05c1a;
+    }
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+    }
+
+    /* ── Top header (same as homepage) ── */
+    header {
+      padding: 2.2rem 3rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .header-left h1 {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 200;
+      font-size: 2.8rem;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.02em;
+    }
+    .header-left p { font-size: 0.9rem; color: var(--muted); letter-spacing: 0.04em; }
+    .header-right { display: flex; align-items: center; gap: 0.5rem; padding-top: 0.6rem; }
+    .header-right a { font-size: 0.82rem; color: var(--muted); text-decoration: none; }
+    .header-right a:hover { color: #fff; }
+
+    /* ── Main layout: card left + content right ── */
+    .layout {
+      display: flex;
+      gap: 0;
+      padding: 0 3rem 3rem;
+      min-height: calc(100vh - 140px);
+    }
+
+    /* ── Left card (stays visible) ── */
+    .side-card {
+      width: 200px;
+      min-width: 200px;
+      border-radius: 4px;
+      overflow: hidden;
+      background: linear-gradient(160deg, #f07030 0%, #c03a00 100%);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem 1.6rem;
+      margin-right: 2rem;
+    }
+    .side-card::before {
+      content: "R";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -60%);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 200;
+      font-size: 12rem;
+      color: rgba(255,255,255,0.13);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .side-card-title {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      font-size: 1.55rem;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+    .side-card-divider {
+      width: 2.5rem; height: 1px;
+      background: rgba(255,255,255,0.5);
+      margin: 0.6rem 0 0.7rem;
+      position: relative; z-index: 1;
+    }
+    .side-card-sub {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.06em;
+      position: relative; z-index: 1;
+    }
+
+    /* Nav arrows */
+    .arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.8rem;
+      color: #555;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+      transition: color 0.2s;
+      z-index: 10;
+    }
+    .arrow:hover { color: #aaa; }
+    .arrow-left  { left: 1rem; }
+    .arrow-right { right: 1rem; }
+
+    /* ── Content panel ── */
+    .content {
+      flex: 1;
+      padding: 0.5rem 0 2rem;
+      overflow-y: auto;
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.1s forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Citation bar */
+    .citation-bar {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 1.2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .citation-track {
+      flex: 1;
+      height: 3px;
+      background: var(--line);
+      border-radius: 2px;
+      margin-right: 1rem;
+      position: relative;
+    }
+    .citation-fill {
+      position: absolute;
+      left: 0; top: 0;
+      height: 100%;
+      width: 85%;
+      background: var(--orange);
+      border-radius: 2px;
+    }
+    .citation-dot {
+      width: 10px; height: 10px;
+      background: var(--orange);
+      border-radius: 50%;
+      margin-right: 0.3rem;
+    }
+    .citation-dot-gray {
+      width: 10px; height: 10px;
+      background: #555;
+      border-radius: 50%;
+    }
+    .citation-text {
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .citation-text a {
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .citation-text a:hover { text-decoration: underline; }
+
+    /* Section badges */
+    .badge {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 400;
+      padding: 0.25rem 0.8rem;
+      border-radius: 3px;
+      margin: 1.4rem 0 0.8rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* Bullet items */
+    .item-list { list-style: none; margin-bottom: 0.5rem; }
+    .item-list li {
+      padding: 0.3rem 0;
+      font-size: 0.88rem;
+      color: #ccc;
+      line-height: 1.6;
+    }
+    .item-list li::before {
+      content: "• ";
+      color: var(--muted);
+    }
+    .item-list a {
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .item-list a:hover { text-decoration: underline; }
+    .item-list .link-muted {
+      color: #aaa;
+      font-size: 0.8rem;
+    }
+    .item-list .link-muted a {
+      color: #aaa;
+    }
+
+    /* Divider between sections */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 0.5rem 0;
+    }
+
+    @media (max-width: 640px) {
+      .layout { flex-direction: column; padding: 0 1.2rem 2rem; }
+      .side-card { width: 100%; min-width: unset; min-height: 140px; margin-right: 0; margin-bottom: 1.5rem; }
+      header { padding: 1.5rem 1.2rem 1rem; flex-direction: column; gap: 0.5rem; }
+      .header-left h1 { font-size: 2rem; }
+      .arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="arrow arrow-left" href="resume.html">&#8249;</a>
+  <a class="arrow arrow-right" href="about.html">&#8250;</a>
+
+  <header>
+    <div class="header-left">
+      <h1>Your Name</h1>
+      <p>your tagline here</p>
+    </div>
+    <div class="header-right">
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="0.5" y="0.5" width="15" height="11" rx="1.5" stroke="#999"/><path d="M0.5 2L8 7L15.5 2" stroke="#999"/></svg>
+      <a href="mailto:you@email.com">you@email.com</a>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- Left card -->
+    <div class="side-card">
+      <div class="side-card-title">Research</div>
+      <div class="side-card-divider"></div>
+      <div class="side-card-sub">publications, media coverage</div>
+    </div>
+
+    <!-- Right content -->
+    <div class="content">
+
+      <!-- Citations -->
+      <p class="citation-text">
+        Citations: <strong>000</strong> &bull; h-index: <strong>00</strong> &bull;
+        <a href="https://scholar.google.com" target="_blank">Scholar</a>
+      </p>
+
+      <!-- Publications -->
+      <span class="badge">Publications</span>
+      <ul class="item-list">
+        <li>
+          <a href="#">Title of Paper One</a>
+          <span class="link-muted">(<a href="#">PDF</a>; <a href="#">Code</a>)</span>
+          — Venue Name, Year
+        </li>
+        <li>
+          <a href="#">Title of Paper Two</a>
+          <span class="link-muted">(<a href="#">PDF</a>)</span>
+          — Venue Name, Year
+        </li>
+        <li>
+          <a href="#">Title of Paper Three</a>
+          <span class="link-muted">(<a href="#">PDF</a>; <a href="#">Slides</a>)</span>
+          — Venue Name, Year
+        </li>
+        <li>
+          <a href="#">Title of Paper Four</a>
+          <span class="link-muted">(<a href="#">PDF</a>)</span>
+          — Venue Name, Year
+        </li>
+        <li>
+          <a href="#">Title of Paper Five</a>
+          <span class="link-muted">(<a href="#">PDF</a>)</span>
+          — Venue Name, Year
+        </li>
+      </ul>
+
+      <hr class="section-divider"/>
+
+      <!-- Awards -->
+      <span class="badge">Awards</span>
+      <ul class="item-list">
+        <li><a href="#">Award Name One</a> <span class="link-muted">(Description, Year)</span></li>
+        <li><a href="#">Award Name Two</a> <span class="link-muted">(Description, Year)</span></li>
+        <li><a href="#">Award Name Three</a> <span class="link-muted">(Description, Year)</span></li>
+      </ul>
+
+      <hr class="section-divider"/>
+
+      <!-- Talks -->
+      <span class="badge">Talks / Presentations</span>
+      <ul class="item-list">
+        <li>
+          <a href="#">Conference or Institution Name: Talk Title</a>
+          | Month Year
+          <span class="link-muted">(<a href="#">Slides</a>)</span>
+        </li>
+        <li>
+          <a href="#">Conference or Institution Name: Talk Title</a>
+          | Month Year
+          <span class="link-muted">(<a href="#">Recording</a>)</span>
+        </li>
+        <li>
+          <a href="#">Conference or Institution Name: Talk Title</a>
+          | Month Year
+        </li>
+      </ul>
+
+      <hr class="section-divider"/>
+
+      <!-- Media Coverage -->
+      <span class="badge">Media Coverage</span>
+      <ul class="item-list">
+        <li><a href="#">Outlet Name</a> <span class="link-muted">(<a href="#">Article title or topic</a>)</span></li>
+        <li><a href="#">Outlet Name</a> <span class="link-muted">(<a href="#">Article title or topic</a>)</span></li>
+        <li><a href="#">Outlet Name</a> <span class="link-muted">(<a href="#">Article title or topic</a>)</span></li>
+      </ul>
+
+    </div>
+  </div>
+
+</body>
+</html>
