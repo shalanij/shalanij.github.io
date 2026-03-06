@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name &middot; About</title>
+  <title>Shalani Jayamanne &middot; About</title>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500&family=DM+Mono:wght@300&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style-inner.css"/>
   <style>
@@ -13,13 +13,29 @@
   <style>
   :root { --accent: #1a6b8a; }
   .side-card { background: linear-gradient(160deg,#1a6b8a,#0d4a66); }
-
-  .profile-photo{
-    width:240px;
-    float:right;
-    margin-left:30px;
-    margin-bottom:20px;
-    border-radius:8px;
+  .content-inner {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 0;
+    align-items: stretch;
+  }
+  .content-text {
+    padding-right: 36px;
+  }
+  .profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border-radius: 0 8px 8px 0;
+  }
+  .photo-col {
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 80px);
+    overflow: hidden;
+    border-radius: 8px;
   }
 </style>
 </head>
@@ -27,15 +43,14 @@
   <a class="arrow arrow-left" href="research.html">&#8249;</a>
   <a class="arrow arrow-right" href="teaching.html">&#8250;</a>
   <div class="header-left">
-  <h1>SHALANI JAYAMANNE</h1>
-  <p>Social Technologist | AI, Higher Education, and Learning Assessment</p>
-  <p>PhD Candidate · School of Computing and Information · University of Pittsburgh</p>
-</div>
-    <div class="header-right">
-      <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="0.5" y="0.5" width="15" height="11" rx="1.5" stroke="#888"/><path d="M0.5 2L8 7L15.5 2" stroke="#888"/></svg>
-      <a href="mailto:you@email.com">you@email.com</a>
-    </div>
-  </header>
+    <h1>SHALANI JAYAMANNE</h1>
+    <p>Social Technologist | AI, Higher Education, and Learning Assessment</p>
+    <p>PhD Candidate · School of Computing and Information · University of Pittsburgh</p>
+  </div>
+  <div class="header-right">
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="0.5" y="0.5" width="15" height="11" rx="1.5" stroke="#888"/><path d="M0.5 2L8 7L15.5 2" stroke="#888"/></svg>
+    <a href="mailto:shalanij@pitt.edu">shalanij@pitt.edu</a>
+  </div>
   <div class="layout">
     <div class="side-card">
       <div class="side-card-title">About</div>
@@ -43,31 +58,37 @@
       <div class="side-card-sub">who I am</div>
     </div>
     <div class="content">
-      <img src="shalani.jpg" alt="Shalani Jayamanne" class="profile-photo">
-      <p class="body-text">I am a Social Technologist and researcher examining how emerging technologies, including generative AI, are reshaping teaching, learning, and assessment in higher education.</p>
-      <p class="body-text">You can mention your institutional affiliation, your background, and what makes your perspective unique.</p>
-      <p class="body-text">Optional third paragraph about your journey or what brought you to your current research focus.</p>
-      <hr class="section-divider"/>
-      <span class="badge">Research Interests</span>
-      <ul class="item-list">
-        <li><a href="#">Research Interest One</a></li>
-        <li><a href="#">Research Interest Two</a></li>
-        <li><a href="#">Research Interest Three</a></li>
-        <li><a href="#">Research Interest Four</a></li>
-      </ul>
-      <hr class="section-divider"/>
-      <span class="badge">Contact</span>
-      <ul class="item-list">
-        <li><a href="mailto:you@email.com">you@email.com</a></li>
-        <li><a href="#">University / Department</a></li>
-        <li>
-<a href="https://www.linkedin.com/">LinkedIn</a> · 
-<a href="https://scholar.google.com/">Google Scholar</a> · 
-<a href="https://orcid.org/">ORCID</a>
-</li>
-      </ul>
+      <div class="content-inner">
+        <div class="content-text">
+          <p class="body-text">I am a Social Technologist and researcher examining how emerging technologies, including generative AI, are reshaping teaching, learning, and assessment in higher education. I am a PhD Candidate in Information Culture and Data Stewardship at the School of Computing and Information, University of Pittsburgh, where my dissertation investigates how MLIS faculty assess student learning in the age of generative AI.</p>
+          <p class="body-text">My perspective is shaped by nine years of teaching experience as a Lecturer in Library and Information Science at the University of Kelaniya, Sri Lanka, alongside my work as a first-generation international scholar navigating the intersections of technology, pedagogy, and institutional practice. I bring a pragmatist, mixed-methods orientation to questions that matter at the human–technology interface.</p>
+          <p class="body-text">Before coming to Pittsburgh, I developed research interests spanning information systems, digital wellbeing, and library anxiety — threads that continue to inform how I think about the evolving roles of educators and learners in AI-mediated environments.</p>
+          <hr class="section-divider"/>
+          <span class="badge">Research Interests</span>
+          <ul class="item-list">
+            <li><a href="research.html">Generative AI in Higher Education</a></li>
+            <li><a href="research.html">Learning Assessment &amp; Academic Integrity</a></li>
+            <li><a href="research.html">Information Literacy &amp; LIS Education</a></li>
+            <li><a href="research.html">Digital Wellbeing &amp; Social Technology</a></li>
+          </ul>
+          <hr class="section-divider"/>
+          <span class="badge">Contact</span>
+          <ul class="item-list">
+            <li><a href="mailto:shalanij@pitt.edu">shalanij@pitt.edu</a></li>
+            <li><a href="https://www.sci.pitt.edu/" target="_blank">School of Computing and Information · University of Pittsburgh</a></li>
+            <li>
+              <a href="https://www.linkedin.com/in/shalanij/" target="_blank">LinkedIn</a> · 
+              <a href="https://scholar.google.com/citations?user=v1jO1bQAAAAJ" target="_blank">Google Scholar</a> · 
+              <a href="https://orcid.org/" target="_blank">ORCID</a>
+            </li>
+          </ul>
+        </div>
+        <div class="photo-col">
+          <img src="shalani.jpg" alt="Shalani Jayamanne" class="profile-photo">
+        </div>
+      </div>
     </div>
   </div>
-  <footer>Your Name &middot; Institution &middot; &copy; 2025</footer>
+  <footer>J.M. Shalani Dilinika Jayamanne &middot; University of Pittsburgh &middot; &copy; 2025</footer>
 </body>
 </html>
